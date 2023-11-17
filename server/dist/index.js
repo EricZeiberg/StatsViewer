@@ -16,15 +16,15 @@ type PlayerStats {
 }
 
 type Query {
-    findPlayer(id: Int) : [Player]
+    findPlayer(search: String) : [Player]
     getActiveGames : [Int]
     getGameStats(playerId: Int, gameId: Int) : PlayerStats
 }
 `;
 const resolvers = {
     Query: {
-        findPlayer: async (_, { id }, { dataSources }) => {
-            return dataSources.nbaAPI.findPlayer(id);
+        findPlayer: async (_, { search }, { dataSources }) => {
+            return dataSources.nbaAPI.findPlayers(search);
         },
         getActiveGames: async (_, __, { dataSources }) => {
             return dataSources.nbaAPI.getActiveGames();

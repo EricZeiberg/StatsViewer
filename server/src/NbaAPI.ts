@@ -5,10 +5,10 @@ export class NbaAPI extends RESTDataSource {
     override baseURL = 'https://api-nba-v1.p.rapidapi.com/'
 
 
-    async findPlayer(id: number) : Promise<Player[]> {
+    async findPlayers(search: string) : Promise<Player[]> {
         const data = await this.get('players', {
             params: {
-                id: id.toString()
+                search: search
             }
         });
         //console.log(data.response)

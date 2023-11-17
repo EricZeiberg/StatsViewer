@@ -4,13 +4,13 @@ export class NbaAPI extends RESTDataSource {
         super(...arguments);
         this.baseURL = 'https://api-nba-v1.p.rapidapi.com/';
     }
-    async findPlayer(id) {
+    async findPlayers(search) {
         const data = await this.get('players', {
             params: {
-                id: id.toString()
+                search: search
             }
         });
-        console.log(data.response);
+        //console.log(data.response)
         return data.response;
     }
     async getActiveGames() {
@@ -19,7 +19,7 @@ export class NbaAPI extends RESTDataSource {
                 date: "2023-11-16"
             }
         });
-        console.log(data.response.map(x => x.id));
+        //console.log(data.response.map(x => x.id))
         return data.response.map(x => x.id);
     }
     async getGameStats(playerId, gameId) {
@@ -28,9 +28,9 @@ export class NbaAPI extends RESTDataSource {
                 game: gameId.toString()
             }
         });
-        console.log(data.response);
+        //console.log(data.response)
         var playerIndex = data.response.findIndex(x => x.player.id == playerId);
-        console.log(playerIndex);
+        //console.log(playerIndex)
         return data.response[playerIndex];
     }
     willSendRequest(_path, request) {
